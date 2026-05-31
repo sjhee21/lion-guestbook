@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝방명록 쓰기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="terminal-container">
+        <div class="status-bar">
+            <p>새로운 방명록 메시지 작성</p>
+        </div>
+
+        <div class="main-content-area">
+            <div class="form-container">
+                <div class="input-group">
+                    <span>글 제 목   :</span>
+                    <input type="text" id="title" class="custom-input" placeholder="제목을 입력하세요" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <span>작성자 이름 :</span>
+                    <input type="text" id="author" class="custom-input" placeholder="닉네임을 적으세요" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <span>메시지 내용 :</span>
+                    <input type="text" id="content" class="custom-input" placeholder="방명록 내용을 적으세요" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <span>비 밀 번 호 :</span>
+                    <input type="password" id="password" class="custom-input" placeholder="삭제 시 사용할 비밀번호" autocomplete="off">
+                </div>
+            </div>
+
+            <div class="info-msg">
+                <p>※ 작성 후 하단 명령어 창에 <span class="highlight-txt">GO</span>를 입력하고 엔터를 치면 전송됩니다.</p>
+                <p>※ 작성을 취소하고 돌아가려면 <span class="highlight-txt">H</span>를 입력하세요.</p>
+            </div>
+        </div>
+
+        <div class="command-line">
+            <span>명령어를 입력하세요 (GO 또는 H) : </span>
+            <input type="text" id="write-input" class="terminal-input" autocomplete="off">
+        </div>
+    </div>
+    <script src="api.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

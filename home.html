@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📝방명록</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="title-container">
+            <h1 class="main-title">방 명 록</h1>
+        </div>
+        <div class="subtitle-container">
+            <div class="sub-title">－ 멋사 PC통신 서비스 －</div>
+        </div>
+
+        <div class="menu-container">
+            <div class="menu-item" onclick="location.href='read.html'">[1] 방명록 읽기</div>
+            <div class="menu-item" onclick="location.href='write.html'">[2] 방명록 쓰기</div>
+        </div>
+
+        <div class="command-line">
+            <span>선택 명령을 입력하세요 (1, 2) : </span>
+            <input type="text" id="home-input" class="terminal-input" maxlength="1" autofocus autocomplete="off">
+            
+        </div>
+    </div>
+    <script src="api.js"></script>
+    <script src="main.js"></script>
+
+    
+</body>
+</html>
