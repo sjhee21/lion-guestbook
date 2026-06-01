@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const readInput = document.getElementById("read-input");
     const writeInput = document.getElementById("write-input");
 
+    // HOME 
 
     if (homeInput) {
         homeInput.addEventListener("keydown", function (event) {
@@ -22,30 +23,41 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.addEventListener("click", () => homeInput.focus());
     }
 
+
+    // READ
+
     if (readInput) {
         const guestbookList = document.getElementById("guestbook-list");
 
         async function loadGuestbook() {
-            const posts = await fetchGetPosts(); 
+            const result = await fetchGetPosts(); 
             
-            if (posts && posts.length > 0) {
+            
+            if (result && result.guestbooks && result.guestbooks.length > 0) {
                 guestbookList.innerHTML = ""; 
                 
-                posts.forEach((post) => {
+                result.guestbooks.forEach((post) => {
                     const row = document.createElement("tr");
+                    
+                    // "2026-05-26T20:46:00Z" 형식을 "2026-05-26" 형태로 이쁘게 자르기
+                    const formattedDate = post.created_at ? post.created_at.split('T')[0] : '2026-06-01';
+                    
+                    
                     row.innerHTML = `
-                        <td>${post.id || post.postId || '000'}</td>
+                        <td>${String(post.guestbook_id).padStart(3, '0')}</td>
                         <td>${post.title}</td>
-                        <td>${post.author}</td>
+                        <td>${post.writer}</td>
                         <td>${post.content}</td>
-                        <td>${post.created_at || post.date || '2026.05.31'}</td>
+                        <td>${formattedDate}</td>
                     `;
                     guestbookList.appendChild(row);
                 });
+            } else {
+                // 글이 하나도 없을 때 에러 방지 
+                guestbookList.innerHTML = `<tr><td colspan="5" style="color: #FFFF00; font-size: 3rem; text-align: center;">등록된 방명록이 없습니다.</td></tr>`;
             }
         }
         
-      
         loadGuestbook();
 
         readInput.addEventListener("keydown", async function (event) { 
@@ -57,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 } else if (value === "W") {
                     window.location.href = "write.html";
                 } else if (value === "D") {
-                    const deleteNum = prompt("삭제할 게시글 번호를 입력하세요:");
+                    const deleteNum = prompt("삭제할 방명록 번호(guestbook_id)를 입력하세요:");
                     
                     if (deleteNum) {
                         const password = prompt(`[${deleteNum}]번 게시글의 비밀번호를 입력하세요:`);
@@ -65,10 +77,10 @@ document.addEventListener("DOMContentLoaded", async function () {
                         if (password) {
                             const success = await fetchDeletePost(deleteNum, password);
                             if (success) {
-                                alert(`[삭제 성공] 게시글이 정상적으로 삭제되었습니다.`);
+                                alert(`방명록이 삭제되었습니다.`);
                                 loadGuestbook();
                             } else {
-                                alert("삭제 실패: 비밀번호가 틀렸거나 존재하지 않는 게시글입니다.");
+                                alert("삭제 실패: 비밀번호가 일치하지 않거나 존재하지 않는 게시글입니다.");
                             }
                         }
                     }
@@ -82,6 +94,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         document.addEventListener("click", () => readInput.focus());
     }
 
+    // WRITE
+
     if (writeInput) {
         writeInput.addEventListener("keydown", async function (event) { 
             if (event.key === "Enter") {
@@ -89,7 +103,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
                 if (value === "GO") {
                     const title = document.getElementById("title").value.trim();
-                    const author = document.getElementById("author").value.trim();
+                    const author = document.getElementById("author").value.trim(); // HTML의 id="author" 연동
                     const content = document.getElementById("content").value.trim();
                     const password = document.getElementById("password").value.trim();
 
@@ -99,12 +113,18 @@ document.addEventListener("DOMContentLoaded", async function () {
                         return;
                     }
 
-                  
-                    const postData = { title, author, content, password };
+                    // 💡 백엔드가 요구한 Request Body 규칙({"title", "writer", "content", "password"}) 데이터 변환
+                    const postData = { 
+                        title: title, 
+                        writer: author, 
+                        content: content, 
+                        password: password 
+                    };
+                    
                     const success = await fetchCreatePost(postData);
 
                     if (success) {
-                        alert("방명록 전송에 성공했습니다!");
+                        alert("방명록이 작성되었습니다.");
                         window.location.href = "read.html";
                     } else {
                         alert("전송 실패: 서버 오류가 발생했습니다.");
