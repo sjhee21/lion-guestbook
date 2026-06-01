@@ -29,11 +29,8 @@ body {
 }
 
 .terminal-container {
-    width: 95vw;
-    max-width: 1500px; 
-    height: 90vh;
-    /*max-height: 850px; 
-    min-height: 550px;*/
+    width: 100vw;
+    height: 100vh;
     
     background-color: #000088; 
     position: relative;
