@@ -32,8 +32,8 @@ body {
     width: 95vw;
     max-width: 1500px; 
     height: 90vh;
-    max-height: 850px; 
-    min-height: 550px;
+    /*max-height: 850px; 
+    min-height: 550px;*/
     
     background-color: #000088; 
     position: relative;
