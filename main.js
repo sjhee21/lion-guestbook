@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 const value = readInput.value.trim().toUpperCase();
 
                 if (value === "H") {
-                    window.location.href = "home.html";
+                    window.location.href = "index.html";
                 } else if (value === "W") {
                     window.location.href = "write.html";
                 } else if (value === "D") {
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     }
 
                 } else if (value === "H") {
-                    window.location.href = "home.html";
+                    window.location.href = "index.html";
                 } else {
                     alert("GO (전송) 또는 H (취소)를 입력해주세요.");
                     writeInput.value = "";
