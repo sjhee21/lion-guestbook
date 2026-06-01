@@ -17,85 +17,86 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* 💡 화면이 아주 작아지면 잘리지 않고 브라우저 스크롤이 생기도록 방어 */
-    overflow: auto; 
+    overflow: hidden; /* 💡 스크롤이 절대 안 생기도록 브라우저 화면 고정 */
     padding: 20px;
 }
 
 .terminal-container {
-    /* 💡 가로/세로를 픽셀 고정값 기반으로 잡되, 화면보다 커지면 유연하게 줄어들도록 설정 */
-    width: 100%;
-    max-width: 1280px; 
-    height: 800px;
-    min-height: 700px;
+    /* 💡 화면 크기에 유연하게 반응하되, 가로세로 완벽한 레트로 비율 유지 */
+    width: 90vw;
+    max-width: 1200px;
+    height: 85vh;
+    max-height: 750px;
+    min-height: 550px;
     
     background-color: #000088; 
     position: relative;
 
-    /* 💡 껍데기 테두리 두께를 고정값으로 주어 내용물이 압박받지 않게 보호 */
-    border: 60px solid #EAE0C8;
-    border-radius: 30px;
+    /* 💡 테두리와 여백을 창 크기에 연동하여 내부가 찌그러지지 않게 방어 */
+    border: 3.5vw solid #EAE0C8;
+    border-radius: 20px;
     
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 40px 50px; 
+    padding: 3vh 4vw; 
     font-family: 'RoundedFixedsys', monospace;
     box-shadow: 0 30px 60px rgba(0,0,0,0.7);
     overflow: hidden; 
 }
 
-/* 🏠 [HOME 페이지] 로직 */
+/* 🏠 [HOME 페이지] */
 
 .title-container {
     text-align: center;
     width: 100%;
-    margin-top: 60px; 
+    margin-top: 2vh; 
 }
 
 .main-title {
-    font-size: 8rem; /* 💡 너무 비대했던 글자 크기를 안정적인 크기로 고정 */
-    letter-spacing: 20px;
+    /* 💡 글자 크기가 화면 너비에 맞게 유연하게 커지고 작아짐 */
+    font-size: clamp(3.5rem, 8vw, 7rem); 
+    letter-spacing: 15px;
     margin: 0;
     display: inline-block;
     color: #FFFFFF;
     font-family: 'RoundedFixedsys', monospace;
-    text-shadow: 6px 6px 0px #000000;
+    text-shadow: 4px 4px 0px #000000;
 }
 
 .subtitle-container {
     display: flex;
-    justify-content: center; /* 💡 우측 패딩 대신 가운데 정렬로 안정감 확보 */
+    justify-content: center; 
     width: 100%;
-    margin-top: 20px; 
+    margin-top: 1vh; 
 }
 
 .sub-title {
-    font-size: 3rem;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
     color: #FFFF00;
-    border-bottom: 4px solid #FFFF00;
-    padding-bottom: 10px;
+    border-bottom: 3px solid #FFFF00;
+    padding-bottom: 5px;
 }
 
 .menu-container {
     display: flex;
     justify-content: center; 
-    gap: 50px; /* 💡 줄바꿈 방지를 위해 일정한 간격 유지 */
+    gap: 4vw; 
     width: 100%; 
-    margin: 40px auto; 
+    margin: auto 0; /* 💡 상하 균형을 맞춰 정중앙에 배치 */
 }
 
 .menu-item {
-    font-size: 3rem; 
+    font-size: clamp(1.5rem, 3.5vw, 3rem); 
     color: #00FF00;
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px 40px; 
-    border: 6px solid #00FF00; 
+    padding: 15px 30px; 
+    border: 5px solid #00FF00; 
     cursor: pointer;
     user-select: none;
     transition: all 0.15s;
     font-weight: bold;
-    white-space: nowrap; /* 💡 글자가 세로로 쪼개지는 현상 원천 차단 */
+    white-space: nowrap; /* 💡 글자가 아래로 튕겨서 세로로 쪼개지는 현상 원천 차단 */
 }
 
 .menu-item:hover {
@@ -103,42 +104,42 @@ body {
     color: #000088;
 }
 
-/* 📊 [READ 페이지] 로직 */
+/* 📊 [READ 페이지] */
 .main-content-area {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 1vh;
     
     overflow-y: auto; 
-    max-height: 400px; /* 💡 테이블 높이를 고정하여 명령어 창을 밑으로 밀어내지 않게 조절 */
+    max-height: 50vh; 
     padding-right: 10px;
 }
 
 .main-content-area::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
 }
 .main-content-area::-webkit-scrollbar-track {
     background: rgba(0, 0, 0, 0.3);
 }
 .main-content-area::-webkit-scrollbar-thumb {
     background: #00FF00; 
-    border-radius: 6px;
+    border-radius: 4px;
 }
 
 .status-bar {
     display: flex;
     justify-content: space-between;
     color: #00FFFF;
-    border-bottom: 5px solid #00FFFF; 
-    padding-bottom: 15px;
+    border-bottom: 4px solid #00FFFF; 
+    padding-bottom: 10px;
 }
 
 .status-bar p {
     color: #FFFFFF;
-    font-size: 2.2rem;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
     margin: 0;
     font-weight: bold;
 }
@@ -146,20 +147,19 @@ body {
 .guestbook-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    min-width: 800px; 
+    margin-top: 15px;
+    min-width: 600px; 
 }
 
 .guestbook-table th, .guestbook-table td {
-    border: 3px solid #00FF00; 
-    padding: 12px 15px; 
+    border: 2px solid #00FF00; 
+    padding: 10px 12px; 
     text-align: center;
-    font-size: 2rem; 
+    font-size: clamp(1.2rem, 2.2vw, 1.8rem); 
 }
 .guestbook-table th {
     background-color: #00FF00;
     color: #000088;
-    font-size: 2rem; 
     position: sticky;
     top: 0;
     z-index: 10;
@@ -177,43 +177,43 @@ body {
 
 .action-bar {
     text-align: right;
-    margin-top: 20px;
+    margin-top: 15px;
     color: #FFFF00;
-    font-size: 2.2rem;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
 }
 
-/* ✍️ [WRITE 페이지] 로직 */
+/* ✍️ [WRITE 페이지] */
 .form-container {
-    margin-top: 30px;
+    margin-top: 2vh;
     display: flex;
     flex-direction: column;
-    gap: 25px; 
+    gap: 2vh; 
 }
 
 .input-group {
     display: flex;
     align-items: center;
-    font-size: 2.2rem;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
     color: #00FF00;
     font-weight: bold;
 }
 
 .input-group span {
-    white-space: nowrap; /* 💡 '글 제 목 :' 같은 텍스트가 세로로 서지 않게 고정 */
+    white-space: nowrap; 
     flex-shrink: 0;
 }
 
 .custom-input {
     background: transparent;
     border: none;
-    border-bottom: 4px solid #FFFFFF; 
+    border-bottom: 3px solid #FFFFFF; 
     color: #FFFFFF;
     font-family: inherit;
-    font-size: 2.2rem; 
-    padding: 5px 15px;
+    font-size: clamp(1.4rem, 2.5vw, 2rem); 
+    padding: 3px 10px;
     outline: none;
     flex-grow: 1;
-    margin-left: 20px;
+    margin-left: 15px;
 }
 
 .custom-input::placeholder {
@@ -222,9 +222,9 @@ body {
 
 .info-msg {
     color: #FFFF00;
-    font-size: 2.2rem; 
-    margin-top: 30px;
-    line-height: 1.6;
+    font-size: clamp(1.3rem, 2.3vw, 1.8rem); 
+    margin-top: 3vh;
+    line-height: 1.5;
 }
 
 .highlight-txt {
@@ -235,13 +235,14 @@ body {
 /* ⌨️ 명령어 입력창 */
 .command-line {
     width: 100%;
-    border-top: 4px solid #FFFFFF; 
-    padding-top: 20px;
-    font-size: 2.4rem;
+    border-top: 3px solid #FFFFFF; 
+    padding-top: 15px;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
     color: #FFFFFF;
     display: flex;
     align-items: center;
     font-weight: bold;
+    margin-top: auto; /* 💡 무조건 화면 가장 맨 아래에 고정 수동 정렬 */
 }
 
 .terminal-input {
@@ -249,11 +250,11 @@ body {
     border: none;
     color: #FFFFFF;
     font-family: inherit;
-    font-size: 2.4rem; 
+    font-size: clamp(1.4rem, 2.5vw, 2rem); 
     outline: none;
-    width: 120px; 
+    width: 100px; 
     caret-color: transparent;
     padding: 0;
-    margin-left: 15px;
+    margin-left: 10px;
     font-weight: bold;
 }
