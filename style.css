@@ -17,32 +17,30 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden; /* 💡 스크롤이 절대 안 생기도록 브라우저 화면 고정 */
+    overflow: hidden; /* 💡 웹브라우저 창 전체 스크롤바 원천 차단 */
     padding: 20px;
 }
 
 .terminal-container {
-    /* 💡 화면 크기에 유연하게 반응하되, 가로세로 완벽한 레트로 비율 유지 */
     width: 90vw;
-    max-width: 1200px;
-    height: 85vh;
-    max-height: 750px;
+    max-width: 1100px; /* 💡 모니터 크기를 살짝 더 콤팩트하게 축소 */
+    height: 80vh;
+    max-height: 680px; /* 💡 최대 높이도 살짝 줄여서 한눈에 들어오게 조절 */
     min-height: 550px;
     
     background-color: #000088; 
     position: relative;
 
-    /* 💡 테두리와 여백을 창 크기에 연동하여 내부가 찌그러지지 않게 방어 */
-    border: 3.5vw solid #EAE0C8;
+    border: 35px solid #EAE0C8; /* 💡 테두리 두께도 살짝 슬림하게 조정 */
     border-radius: 20px;
     
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 3vh 4vw; 
+    padding: 30px 40px; /* 💡 여백 정돈 */
     font-family: 'RoundedFixedsys', monospace;
     box-shadow: 0 30px 60px rgba(0,0,0,0.7);
-    overflow: hidden; 
+    overflow: hidden; /* 💡 내부 요소로 인한 스크롤바 발생 완벽 차단 */
 }
 
 /* 🏠 [HOME 페이지] */
@@ -50,13 +48,12 @@ body {
 .title-container {
     text-align: center;
     width: 100%;
-    margin-top: 2vh; 
+    margin-top: 10px; 
 }
 
 .main-title {
-    /* 💡 글자 크기가 화면 너비에 맞게 유연하게 커지고 작아짐 */
-    font-size: clamp(3.5rem, 8vw, 7rem); 
-    letter-spacing: 15px;
+    font-size: clamp(3rem, 6vw, 5.5rem); /* 💡 글씨 스케일 한 단계 다운 */
+    letter-spacing: 12px;
     margin: 0;
     display: inline-block;
     color: #FFFFFF;
@@ -68,11 +65,11 @@ body {
     display: flex;
     justify-content: center; 
     width: 100%;
-    margin-top: 1vh; 
+    margin-top: 8px; 
 }
 
 .sub-title {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(1.3rem, 2.5vw, 2rem); /* 💡 글씨 크기 다운 */
     color: #FFFF00;
     border-bottom: 3px solid #FFFF00;
     padding-bottom: 5px;
@@ -81,22 +78,22 @@ body {
 .menu-container {
     display: flex;
     justify-content: center; 
-    gap: 4vw; 
+    gap: 3vw; 
     width: 100%; 
-    margin: auto 0; /* 💡 상하 균형을 맞춰 정중앙에 배치 */
+    margin: auto 0;
 }
 
 .menu-item {
-    font-size: clamp(1.5rem, 3.5vw, 3rem); 
+    font-size: clamp(1.3rem, 2.8vw, 2.4rem); 
     color: #00FF00;
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 15px 30px; 
-    border: 5px solid #00FF00; 
+    padding: 12px 25px; 
+    border: 4px solid #00FF00; 
     cursor: pointer;
     user-select: none;
     transition: all 0.15s;
     font-weight: bold;
-    white-space: nowrap; /* 💡 글자가 아래로 튕겨서 세로로 쪼개지는 현상 원천 차단 */
+    white-space: nowrap; 
 }
 
 .menu-item:hover {
@@ -111,12 +108,13 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-    margin-top: 1vh;
+    margin-top: 10px;
     
     overflow-y: auto; 
-    max-height: 50vh; 
-    padding-right: 10px;
+    max-height: 42vh; 
+    padding-right: 5px;
 }
+
 
 .main-content-area::-webkit-scrollbar {
     width: 8px;
@@ -133,13 +131,13 @@ body {
     display: flex;
     justify-content: space-between;
     color: #00FFFF;
-    border-bottom: 4px solid #00FFFF; 
-    padding-bottom: 10px;
+    border-bottom: 3px solid #00FFFF; 
+    padding-bottom: 8px;
 }
 
 .status-bar p {
     color: #FFFFFF;
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-size: clamp(1.2rem, 2vw, 1.7rem); 
     margin: 0;
     font-weight: bold;
 }
@@ -147,15 +145,15 @@ body {
 .guestbook-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
+    margin-top: 10px;
     min-width: 600px; 
 }
 
 .guestbook-table th, .guestbook-table td {
     border: 2px solid #00FF00; 
-    padding: 10px 12px; 
+    padding: 8px 10px; 
     text-align: center;
-    font-size: clamp(1.2rem, 2.2vw, 1.8rem); 
+    font-size: clamp(1.1rem, 1.8vw, 1.5rem); 
 }
 .guestbook-table th {
     background-color: #00FF00;
@@ -177,23 +175,23 @@ body {
 
 .action-bar {
     text-align: right;
-    margin-top: 15px;
+    margin-top: 10px;
     color: #FFFF00;
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-size: clamp(1.2rem, 2vw, 1.7rem);
 }
 
-/* ✍️ [WRITE 페이지] */
+
 .form-container {
-    margin-top: 2vh;
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
-    gap: 2vh; 
+    gap: 15px; 
 }
 
 .input-group {
     display: flex;
     align-items: center;
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-size: clamp(1.2rem, 2vw, 1.7rem); 
     color: #00FF00;
     font-weight: bold;
 }
@@ -206,11 +204,11 @@ body {
 .custom-input {
     background: transparent;
     border: none;
-    border-bottom: 3px solid #FFFFFF; 
+    border-bottom: 2px solid #FFFFFF; 
     color: #FFFFFF;
     font-family: inherit;
-    font-size: clamp(1.4rem, 2.5vw, 2rem); 
-    padding: 3px 10px;
+    font-size: clamp(1.2rem, 2vw, 1.7rem); 
+    padding: 2px 8px;
     outline: none;
     flex-grow: 1;
     margin-left: 15px;
@@ -222,9 +220,9 @@ body {
 
 .info-msg {
     color: #FFFF00;
-    font-size: clamp(1.3rem, 2.3vw, 1.8rem); 
-    margin-top: 3vh;
-    line-height: 1.5;
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem); 
+    margin-top: 20px;
+    line-height: 1.4;
 }
 
 .highlight-txt {
@@ -232,17 +230,17 @@ body {
     font-weight: bold;
 }
 
-/* ⌨️ 명령어 입력창 */
+
 .command-line {
     width: 100%;
     border-top: 3px solid #FFFFFF; 
-    padding-top: 15px;
-    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    padding-top: 12px;
+    font-size: clamp(1.2rem, 2vw, 1.7rem); 
     color: #FFFFFF;
     display: flex;
     align-items: center;
     font-weight: bold;
-    margin-top: auto; /* 💡 무조건 화면 가장 맨 아래에 고정 수동 정렬 */
+    margin-top: auto; 
 }
 
 .terminal-input {
@@ -250,7 +248,7 @@ body {
     border: none;
     color: #FFFFFF;
     font-family: inherit;
-    font-size: clamp(1.4rem, 2.5vw, 2rem); 
+    font-size: clamp(1.2rem, 2vw, 1.7rem); 
     outline: none;
     width: 100px; 
     caret-color: transparent;
