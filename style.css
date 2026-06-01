@@ -5,7 +5,6 @@
     font-display: swap;
 }
 
-
 * {
     box-sizing: border-box;
 }
@@ -18,76 +17,85 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden;
+    /* 💡 화면이 아주 작아지면 잘리지 않고 브라우저 스크롤이 생기도록 방어 */
+    overflow: auto; 
+    padding: 20px;
 }
 
 .terminal-container {
-    width: 100vw;
-    height: 100vh;
+    /* 💡 가로/세로를 픽셀 고정값 기반으로 잡되, 화면보다 커지면 유연하게 줄어들도록 설정 */
+    width: 100%;
+    max-width: 1280px; 
+    height: 800px;
+    min-height: 700px;
+    
     background-color: #000088; 
     position: relative;
 
-    border: 100px solid #EAE0C8;
+    /* 💡 껍데기 테두리 두께를 고정값으로 주어 내용물이 압박받지 않게 보호 */
+    border: 60px solid #EAE0C8;
     border-radius: 30px;
     
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 70px 100px;
+    padding: 40px 50px; 
     font-family: 'RoundedFixedsys', monospace;
     box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+    overflow: hidden; 
 }
 
-/* home */
+/* 🏠 [HOME 페이지] 로직 */
 
 .title-container {
     text-align: center;
     width: 100%;
-    margin-top: 300px; 
+    margin-top: 60px; 
 }
 
 .main-title {
-    font-size: 18rem; 
-    letter-spacing: 40px;
+    font-size: 8rem; /* 💡 너무 비대했던 글자 크기를 안정적인 크기로 고정 */
+    letter-spacing: 20px;
     margin: 0;
     display: inline-block;
     color: #FFFFFF;
     font-family: 'RoundedFixedsys', monospace;
-    text-shadow: 9px 9px 0px #000000;
+    text-shadow: 6px 6px 0px #000000;
 }
 
 .subtitle-container {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center; /* 💡 우측 패딩 대신 가운데 정렬로 안정감 확보 */
     width: 100%;
-    padding-right: 450px;
-    margin-top: 25px; 
+    margin-top: 20px; 
 }
 
 .sub-title {
-    font-size: 6rem;
+    font-size: 3rem;
     color: #FFFF00;
-    border-bottom: 6px solid #FFFF00;
-    padding-bottom: 15px;
+    border-bottom: 4px solid #FFFF00;
+    padding-bottom: 10px;
 }
 
 .menu-container {
     display: flex;
-    justify-content: space-between; 
-    width: 70%; 
-    margin: 80px auto 40px auto; 
+    justify-content: center; 
+    gap: 50px; /* 💡 줄바꿈 방지를 위해 일정한 간격 유지 */
+    width: 100%; 
+    margin: 40px auto; 
 }
 
 .menu-item {
-    font-size: 6rem; 
+    font-size: 3rem; 
     color: #00FF00;
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 45px 100px; 
-    border: 8px solid #00FF00; 
+    padding: 20px 40px; 
+    border: 6px solid #00FF00; 
     cursor: pointer;
     user-select: none;
     transition: all 0.15s;
     font-weight: bold;
+    white-space: nowrap; /* 💡 글자가 세로로 쪼개지는 현상 원천 차단 */
 }
 
 .menu-item:hover {
@@ -95,21 +103,19 @@ body {
     color: #000088;
 }
 
-/* read */
+/* 📊 [READ 페이지] 로직 */
 .main-content-area {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
     
     overflow-y: auto; 
-    max-height: 52vh; 
-    
+    max-height: 400px; /* 💡 테이블 높이를 고정하여 명령어 창을 밑으로 밀어내지 않게 조절 */
     padding-right: 10px;
 }
-
 
 .main-content-area::-webkit-scrollbar {
     width: 12px;
@@ -132,7 +138,7 @@ body {
 
 .status-bar p {
     color: #FFFFFF;
-    font-size: 3.5rem;
+    font-size: 2.2rem;
     margin: 0;
     font-weight: bold;
 }
@@ -140,20 +146,20 @@ body {
 .guestbook-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 40px;
+    margin-top: 20px;
     min-width: 800px; 
 }
 
 .guestbook-table th, .guestbook-table td {
-    border: 4px solid #00FF00; 
-    padding: 26px 20px; 
+    border: 3px solid #00FF00; 
+    padding: 12px 15px; 
     text-align: center;
-    font-size: 4rem; 
+    font-size: 2rem; 
 }
 .guestbook-table th {
     background-color: #00FF00;
     color: #000088;
-    font-size: 2.6rem; 
+    font-size: 2rem; 
     position: sticky;
     top: 0;
     z-index: 10;
@@ -164,46 +170,50 @@ body {
 }
 
 .col-num  { width: 10%; }
-.col-title { width: 25%; }
-.col-name { width: 20%; }
+.col-title { width: 30%; }
+.col-name { width: 15%; }
 .col-text { width: 30%; }
 .col-date { width: 15%; }
 
 .action-bar {
     text-align: right;
-    margin-top: 30px;
+    margin-top: 20px;
     color: #FFFF00;
-    font-size: 3.5rem;
+    font-size: 2.2rem;
 }
 
-
-/* write */
+/* ✍️ [WRITE 페이지] 로직 */
 .form-container {
-    margin-top: 50px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
-    gap: 50px; 
+    gap: 25px; 
 }
 
 .input-group {
     display: flex;
     align-items: center;
-    font-size: 3.4rem;
+    font-size: 2.2rem;
     color: #00FF00;
     font-weight: bold;
+}
+
+.input-group span {
+    white-space: nowrap; /* 💡 '글 제 목 :' 같은 텍스트가 세로로 서지 않게 고정 */
+    flex-shrink: 0;
 }
 
 .custom-input {
     background: transparent;
     border: none;
-    border-bottom: 5px solid #FFFFFF; 
+    border-bottom: 4px solid #FFFFFF; 
     color: #FFFFFF;
     font-family: inherit;
-    font-size: 3.5rem; 
-    padding: 10px 20px;
+    font-size: 2.2rem; 
+    padding: 5px 15px;
     outline: none;
     flex-grow: 1;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 
 .custom-input::placeholder {
@@ -212,9 +222,9 @@ body {
 
 .info-msg {
     color: #FFFF00;
-    font-size: 3.5rem; 
-    margin-top: 50px;
-    line-height: 1.8;
+    font-size: 2.2rem; 
+    margin-top: 30px;
+    line-height: 1.6;
 }
 
 .highlight-txt {
@@ -222,12 +232,12 @@ body {
     font-weight: bold;
 }
 
-/* 명령어 입력창 */
+/* ⌨️ 명령어 입력창 */
 .command-line {
     width: 100%;
-    border-top: 6px solid #FFFFFF; 
-    padding-top: 35px;
-    font-size: 3.5rem;
+    border-top: 4px solid #FFFFFF; 
+    padding-top: 20px;
+    font-size: 2.4rem;
     color: #FFFFFF;
     display: flex;
     align-items: center;
@@ -239,12 +249,11 @@ body {
     border: none;
     color: #FFFFFF;
     font-family: inherit;
-    font-size: 3.5rem; 
+    font-size: 2.4rem; 
     outline: none;
-    width: 80px; 
+    width: 120px; 
     caret-color: transparent;
     padding: 0;
-    margin-left: 20px;
+    margin-left: 15px;
     font-weight: bold;
 }
-
